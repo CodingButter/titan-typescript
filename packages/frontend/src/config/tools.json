@@ -1,0 +1,140 @@
+[
+  {
+    "label": "Select",
+    "kit": "fas",
+    "icon": "mouse-pointer",
+    "states": {
+      "hover": {
+        "kit": "fat",
+        "icon": "mouse-pointer"
+      },
+      "focus": {
+        "kit": "fas",
+        "icon": "mouse-pointer"
+      },
+      "active": {
+        "kit": "fas",
+        "icon": "mouse-pointer"
+      },
+      "disabled": {
+        "kit": "fak",
+        "icon": "mouse-pointer"
+      }
+    }
+  },
+  {
+    "label": "Move",
+    "kit": "fas",
+    "icon": "arrows-alt",
+    "states": {
+      "hover": {
+        "kit": "fat",
+        "icon": "arrows-alt"
+      },
+      "focus": {
+        "kit": "fas",
+        "icon": "arrows-alt"
+      },
+      "active": {
+        "kit": "fas",
+        "icon": "arrows-alt"
+      },
+      "disabled": {
+        "kit": "fak",
+        "icon": "arrows-alt"
+      }
+    }
+  },
+  {
+    "label": "Text",
+    "kit": "fas",
+    "icon": "font",
+    "states": {
+      "hover": {
+        "kit": "fat",
+        "icon": "font"
+      },
+      "focus": {
+        "kit": "fas",
+        "icon": "font"
+      },
+      "active": {
+        "kit": "fas",
+        "icon": "font"
+      },
+      "disabled": {
+        "kit": "fak",
+        "icon": "font"
+      }
+    }
+  },
+  {
+    "label": "Draw",
+    "kit": "fas",
+    "icon": "pencil-alt",
+    "states": {
+      "hover": {
+        "kit": "fat",
+        "icon": "pencil-alt"
+      },
+      "focus": {
+        "kit": "fas",
+        "icon": "pencil-alt"
+      },
+      "active": {
+        "kit": "fas",
+        "icon": "pencil-alt"
+      },
+      "disabled": {
+        "kit": "fak",
+        "icon": "pencil-alt"
+      }
+    }
+  },
+  {
+    "label": "Erase",
+    "kit": "fas",
+    "icon": "eraser",
+    "states": {
+      "hover": {
+        "kit": "fat",
+        "icon": "eraser"
+      },
+      "focus": {
+        "kit": "fas",
+        "icon": "eraser"
+      },
+      "active": {
+        "kit": "fas",
+        "icon": "eraser"
+      },
+      "disabled": {
+        "kit": "fak",
+        "icon": "eraser"
+      }
+    }
+  },
+  {
+    "label": "Fill",
+    "kit": "fas",
+    "icon": "fill-drip",
+    "states": {
+      "hover": {
+        "kit": "fat",
+        "icon": "fill-drip"
+      },
+      "focus": {
+        "kit": "fas",
+        "icon": "fill-drip"
+      },
+      "active": {
+        "kit": "fas",
+        "icon": "fill-drip"
+      },
+      "disabled": {
+        "kit": "fak",
+        "icon": "fill-drip"
+      }
+    }
+  }
+]
