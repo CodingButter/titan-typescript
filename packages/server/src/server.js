@@ -11,8 +11,8 @@ if (!fs.existsSync(UPLOAD_DIR)) {
 
 // Create Express server to serve uploaded assets
 const app = express()
-app.use("/uploads", express.static(UPLOAD_DIR))
-app.listen(3000, () => console.log("Asset server running on http://localhost:3000/uploads"))
+app.use("/users", express.static(UPLOAD_DIR))
+app.listen(3000, () => console.log("Asset server running on http://localhost:3000/users"))
 
 // Create WebSocket server
 const wss = new WebSocket.Server({ port: PORT }, () => {

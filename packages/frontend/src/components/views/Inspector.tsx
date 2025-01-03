@@ -1,4 +1,6 @@
+import { FunctionArgument } from "@/utils/FunctionParser"
 import { Command, useGetCommands } from "@hooks/useGetCommands"
+import ReactJson from "react-json-view"
 
 const Inspector = () => {
   const { commands, calculateCommands } = useGetCommands()
@@ -13,16 +15,7 @@ const Inspector = () => {
                    focus:ring-2 focus:ring-accent-background">
         Calculate Commands
       </button>
-      <ul className="flex flex-col gap-2 justify-start items-center w-full">
-        {commands.map((command: Command, index: number) => (
-          <li
-            key={`${command.name}-${index}`}
-            className="cursor-pointer w-full rounded p-2 bg-surface-background text-surface-text flex flex-col justify-center items-start">
-            <h3 className="p-2 w-full cursor-pointer text-center">{command.name}</h3>
-            <p>{command.description}</p>
-          </li>
-        ))}
-      </ul>
+      {commands && <ReactJson src={commands} />}
     </div>
   )
 }
