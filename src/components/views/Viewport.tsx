@@ -26,13 +26,16 @@ const Viewport = () => {
       window.removeEventListener("resize", resizer)
     }
   }, [])
+  useEffect(() => {
+    if (ctx) {
+      ctx.fillStyle = "blue"
+      ctx.fillRect(0, 0, size.width, size.height)
+    }
+  }, [ctx, size])
   return (
-    <canvas
-      ref={canvasRef}
-      className="absolute left-0 top-0 w-full h-full"
-      width={size.width}
-      height={size.height}
-    />
+    <div className="absolute top-0 left-0 -z-10">
+      <canvas ref={canvasRef} className="w-full h-full" width={size.width} height={size.height} />
+    </div>
   )
 }
 

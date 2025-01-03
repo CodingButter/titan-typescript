@@ -25,7 +25,7 @@ const Hierarchy = () => {
   }
 
   return (
-    <div className="EntityPanel w-full flex flex-col justify-center bg-surface-background text-surface-text">
+    <div className="EntityPanel w-full h-full flex flex-col justify-start bg-surface-background text-surface-text p-4">
       <button
         onClick={handleAddEntity}
         className="w-full px-4 py-2 mb-4 rounded bg-primary-background text-primary-text 

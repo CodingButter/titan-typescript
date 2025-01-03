@@ -5,8 +5,7 @@ const Editor = () => {
   const { editorRef, setValue, getValue } = useVSCode()
 
   return (
-    <div className="h-screen w-full bg-surface-background text-surface-text p-4">
-      <h1 className="text-xl font-bold mb-4">VSCode Editor Example</h1>
+    <div className="h-screen w-full bg-surface-background text-surface-text p-2">
       <div className="w-full h-96">
         <MonicoEditor
           defaultLanguage="typescript"

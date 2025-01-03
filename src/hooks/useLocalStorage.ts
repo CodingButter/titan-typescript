@@ -21,3 +21,13 @@ export const useLocalStorage = <T>(key: string, initialValue: T): [T, (value: T)
 
   return [storedValue, setStoredValue]
 }
+
+const clearLocalStorage = (key: string) => {
+  window.localStorage.removeItem(key)
+}
+
+const useLocalStorageManager = () => {
+  return { useLocalStorage, clearLocalStorage }
+}
+
+export default useLocalStorageManager

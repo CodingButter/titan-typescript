@@ -1,22 +1,25 @@
 import React, { createContext, useContext } from "react"
 import { useLocalStorage } from "@hooks/useLocalStorage"
 import Views from "@views/index"
-import { Direction } from "node_modules/react-resizable-panels/dist/declarations/src/types"
-
-export interface Section {
+import { type Direction } from "node_modules/react-resizable-panels/dist/declarations/src/types"
+export interface WSPanel {
   id: string
   title: string
   view?: keyof typeof Views
-  children: Section[]
+  children?: WSPanel[]
   direction?: Direction
-  resizable?: boolean
-  width?: number | string
-  height?: number | string
-  min_width?: number | string
-  min_height?: number | string
+  maxSize?: number
+  minSize?: number
+  defaultSize?: number
+  collapsedSize?: number
   collapsable?: boolean
   collapsed?: boolean
+  resizable?: boolean
   hidden?: boolean
+  tagName?: keyof HTMLElementTagNameMap
+  style?: { [key: string]: string }
+  order?: number
+  autoSaveId?: string
 }
 
 export type Mode = "light" | "dark"
@@ -24,68 +27,63 @@ export type Mode = "light" | "dark"
 export interface WorkspaceContextInterface {
   colorMode: Mode
   setColorMode: (mode: Mode) => void
-  layout: Section
-  setLayout: (layout: Section) => void
+  layout: WSPanel
+  setLayout: (layout: WSPanel) => void
 }
 
-const defaultLayout: Section = {
-  id: "root",
-  title: "Root",
+const defaultLayout: WSPanel = {
+  title: "Root Panel Group",
+  id: "root-panel-group",
+  direction: "horizontal",
+  autoSaveId: "workspace-layout",
   children: [
+    /* ToolBar */
     {
-      id: "left-sidebar",
-      title: "ToolBar",
+      id: "toolbar",
+      title: "Toolbar",
       view: "ToolBar",
-      children: [],
-      width: 75,
-      min_width: 25,
       resizable: false,
-      collapsable: true,
+      style: { maxWidth: "60px" },
     },
     {
       id: "hierarchy",
       title: "Hierarchy",
       view: "Hierarchy",
-      children: [],
       resizable: true,
-      collapsable: true,
-      width: 200,
-      min_width: 25,
     },
     {
-      id: "main-Viewport",
-      title: "Main Viewport",
+      id: "viewport-assets-browser",
+      title: "Viewport & Assets Browser",
+      direction: "vertical",
+      resizable: true,
       children: [
         {
-          id: "Viewport",
+          id: "viewport",
           title: "Viewport",
           view: "Viewport",
           resizable: true,
-          height: "100%",
         },
         {
           id: "asset-browser",
           title: "Asset Browser",
           view: "AssetBrowser",
           resizable: true,
-          height: 250,
+        },
+        {
+          id: "editor",
+          title: "Editor",
+          view: "Editor",
+          resizable: true,
         },
       ],
-      direction: "vertical",
-      resizable: true,
-      width: "100%",
     },
     {
       id: "inspector",
       title: "Inspector",
       view: "Inspector",
       resizable: true,
-      collapsable: true,
-      width: 200,
-      min_width: 25,
     },
   ],
-  direction: "horizontal",
 }
 
 export const WorkspaceContext = createContext<WorkspaceContextInterface>({
@@ -99,7 +97,7 @@ export const useWorkspace = () => useContext(WorkspaceContext)
 
 export const WorkspaceProvider = ({ children }: { children: React.ReactNode }) => {
   const [colorMode, setColorMode] = useLocalStorage<Mode>("colorMode", "light")
-  const [layout, setLayout] = useLocalStorage<Section>("layout", defaultLayout)
+  const [layout, setLayout] = useLocalStorage<WSPanel>("layout", defaultLayout)
 
   return (
     <WorkspaceContext.Provider value={{ colorMode, setColorMode, layout, setLayout }}>

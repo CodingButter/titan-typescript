@@ -5,6 +5,7 @@ import { GameStateProvider } from "@hooks/useGameState"
 import { LoggerProvider } from "@hooks/useLogger"
 import { VSCodeProvider } from "@hooks/useVSCode" // Import the new provider
 import { loggerConfig } from "./config/logger.config"
+import { CommandProvider } from "./hooks/useGetCommands"
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -12,7 +13,9 @@ export default function Providers({ children }: { children: React.ReactNode }) {
       <WebSocketProvider url={new URL("ws://localhost:8080")}>
         <GameStateProvider>
           <VSCodeProvider>
-            <WorkspaceProvider>{children}</WorkspaceProvider>
+            <WorkspaceProvider>
+              <CommandProvider>{children}</CommandProvider>
+            </WorkspaceProvider>
           </VSCodeProvider>
         </GameStateProvider>
       </WebSocketProvider>

@@ -6,7 +6,7 @@ import classnames from "classnames"
 function App() {
   const { colorMode } = useWorkspace()
   return (
-    <div className={classnames(colorMode, "w-screen h-full flex flex-col bg-primary-300")}>
+    <div className={classnames(colorMode, "w-screen h-full flex flex-col")}>
       <TopBar />
       <div className="w-full flex h-full items-start justify-start">
         <MainLayout />
