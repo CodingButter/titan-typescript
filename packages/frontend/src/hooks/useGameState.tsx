@@ -72,13 +72,6 @@ export const GameStateProvider = ({ children }: { children: React.ReactNode }) =
   const [selectedEntities, setSelectedEntities] = useState<string[]>([])
 
   const loadGameState = (locadedGameState: IEntityObject[]) => {
-    /**
-     * @description Load the game state
-     * @param {IEntityObject[]} locadedGameState - The game state to load
-     * @returns {void}
-     * @example
-     * loadGameState([{ id: "1", components: [{ type: "Position", x: 0, y: 0 }] }])
-     */
     setGameState(locadedGameState)
     setWorld(initializeWord(locadedGameState))
   }
@@ -106,16 +99,8 @@ export const GameStateProvider = ({ children }: { children: React.ReactNode }) =
   return (
     <GameStateContext.Provider
       value={{
-        getEntities: (ids: string[]) => {
-          /**
-           * @description Get entities by id
-           * @param {string[]} ids - The ids of the entities to get
-           * @returns {IEntityObject[]} - The entities
-           * @example
-           * getEntities(["1", "2"])
-           */
-          return world.getObject().filter((entity) => ids.includes(entity.id))
-        },
+        getEntities: (ids: string[]) =>
+          world.getObject().filter((entity) => ids.includes(entity.id)),
         addEntities: (entities: IEntityObject[]) => {
           world.createEntities(entities)
           setWorld(world)

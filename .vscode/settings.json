@@ -1,0 +1,37 @@
+{
+  /* STREAMING WORKSPACE */
+  ///----------- THEMING AND TEXT/FONT SETTINGS ---------------///
+  "workbench.colorTheme": "FireFly Pro",
+  "editor.fontFamily": "Hasklig-Medium",
+  "editor.fontSize": 18,
+  "editor.lineHeight": 24,
+  "editor.letterSpacing": 0.4,
+  "editor.fontWeight": "600",
+  "editor.cursorStyle": "line",
+  "editor.cursorBlinking": "solid",
+  "editor.cursorWidth": 8,
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.cursorSurroundingLines": 5,
+  "editor.cursorSurroundingLinesStyle": "all",
+
+  ///----------- FORMATTING AND LINTING SETTINGS ---------------///
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnType": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always",
+    "source.fixAll.stylelint": "always"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.tabSize": 4,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": true,
+  "editor.renderWhitespace": "boundary",
+  "editor.renderControlCharacters": true,
+  "editor.renderLineHighlight": "all",
+  "editor.renderFinalNewline": "on",
+  "editor.trimAutoWhitespace": true,
+  "editor.wordWrap": "on",
+  "editor.wordWrapColumn": 80,
+  "editor.wrappingIndent": "same"
+}
