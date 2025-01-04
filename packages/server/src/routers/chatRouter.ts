@@ -7,10 +7,10 @@ const chatRouter = Router()
 export interface Reaction {
     emoji: string
     count: number
-    reactors: User[]
+    reactors: string[]
 }
 
-export interface Message {
+export interface MessageObject {
     id: string
     sender: string
     content: string
@@ -18,15 +18,6 @@ export interface Message {
     reactions: Reaction[]
 }
 
-export interface User {
-    id: string
-    name: string
-    avatar: string
-    messages: Message[]
-    favoriteRooms: string[]
-    blockedUsers: string[]
-    bannedRooms: string[]
-}
 
 export interface Role{
     name: string
@@ -34,7 +25,20 @@ export interface Role{
     users: string[]
 }
 
-export interface RoomConfig {
+
+export interface UserObject {
+    id: string
+    name: string
+    avatar: string
+    messages: string[]
+    favoriteRooms: string[]
+    blockedUsers: string[]
+    bannedRooms: string[]
+}
+
+
+
+export interface RoomObject {
     id: string
     name: string
     users: string[]
@@ -48,6 +52,34 @@ export interface RoomConfig {
     isMuted: boolean
     roles: Role[]
     owner: string
+}
+
+
+
+export interface Query {
+    select: Partial<RoomObject | UserObject | MessageObject>
+    where: Partial<RoomObject | UserObject | MessageObject>
+    sort: Partial<RoomObject | UserObject | MessageObject>
+    limit: number
+    skip: number
+}
+
+export class QueryManager {
+    private static users: Map<string, UserObject> = new Map()
+    private static rooms: Map<string, RoomObject> = new Map()
+    private static messages: Map<string, MessageObject> = new Map()
+    private static queries: Map<string, Query> = new Map()
+    public static createQuery(query: Query): string {
+        const id = Math.random().toString(36).substr(2, 9)
+        QueryManager.queries.set(id, query)
+        return id
+    }
+    public static getQuery(id: string): Query | undefined {
+        return QueryManager.queries.get(id)
+    }
+    public static deleteQuery(id: string): void {
+        QueryManager.queries.delete(id)
+    }
 }
 
 export class Room {
@@ -65,7 +97,7 @@ export class Room {
     private _isMuted: boolean
     private _roles: Role[]
     private _owner: string
-    constructor(config: RoomConfig) {
+    constructor(config: RoomObject) {
         this._id = config.id || Math.random().toString(36).substr(2, 9)
         this._name = config.name || "New Room"
         this._users = config.users || []
@@ -79,6 +111,10 @@ export class Room {
         this._isMuted = config.isMuted || false
         this._roles = config.roles || []
         this._owner = config.owner || ""
+    }
+    private static queryRooms()
+    public static listRooms(): Room[] {
+        return Array.from(Room.rooms.values())
     }
 
 }
