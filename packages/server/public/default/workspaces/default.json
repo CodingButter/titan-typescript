@@ -1,0 +1,10 @@
+{
+  "workspaces": [
+    {
+      "title": "Default",
+      "author": "Jamie Nichols",
+      "description": "Default workspace layout",
+      "layouts": ["default-main-layout", "default-simple-layout", "default-advanced-layout"]
+    }
+  ]
+}

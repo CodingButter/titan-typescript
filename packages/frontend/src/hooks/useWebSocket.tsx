@@ -1,11 +1,11 @@
-import React, { useContext, createContext, useEffect, useState } from "react"
+import React, { useContext, createContext, useState } from "react"
 import { useFunctionDebouncer } from "@hooks/useDebounce"
 import type { WebSocketMessage, WebSocketResponse } from "WebSocketServer"
 export interface WebSocketContextProps {
-  url: URL | string
   sendMessage?: (message: any) => void
   messages: any[]
   isConnected?: boolean
+  connect?: (credentials: ConnectionCredentials) => void
 }
 
 export const WebSocketContext = createContext<WebSocketContextProps | undefined>(undefined)
@@ -18,15 +18,34 @@ export const useWebSocket = () => {
   return context
 }
 
-export interface WebSocketProviderProps extends WebSocketContextProps {
-  children: React.ReactNode
+export type Token = string
+
+export interface ConnectionCredentials {
+  username?: string
+  password?: string
+  token?: string
+}
+export interface WebSocketProviderProps {
   url: URL | string
+  children: React.ReactNode
 }
 
-export const WebSocketProvider = ({ url = "", children }: Partial<WebSocketProviderProps>) => {
+const buildUrl = ({ username, password, token }: ConnectionCredentials, url: URL | string): URL => {
+  url = new URL(url.toString())
+  if (username && password) {
+    url.username = username
+    url.password = password
+  } else if (token) {
+    url.username = token
+  }
+  return url
+}
+
+export const WebSocketProvider = ({ url: wsUrl, children }: WebSocketProviderProps) => {
   const [socket, setSocket] = useState<WebSocket | null>(null)
   const [isConnected, setIsConnected] = useState(false)
   const [messages, setMessages] = useState<WebSocketResponse[]>([])
+
   const sendMessage = useFunctionDebouncer(
     () => (message: WebSocketMessage) => {
       console.log(`Sending message: ${JSON.stringify(message)}`)
@@ -39,8 +58,8 @@ export const WebSocketProvider = ({ url = "", children }: Partial<WebSocketProvi
     1000
   )
 
-  useEffect(() => {
-    const ws = new WebSocket(url)
+  const connect = (credentials: ConnectionCredentials) => {
+    const ws = new WebSocket(buildUrl(credentials, wsUrl).toString())
     setSocket(ws)
 
     ws.onopen = () => {
@@ -66,10 +85,10 @@ export const WebSocketProvider = ({ url = "", children }: Partial<WebSocketProvi
     }
 
     return () => ws.close()
-  }, [url])
+  }
 
   return (
-    <WebSocketContext.Provider value={{ url, sendMessage, isConnected, messages }}>
+    <WebSocketContext.Provider value={{ connect, sendMessage, isConnected, messages }}>
       {children}
     </WebSocketContext.Provider>
   )

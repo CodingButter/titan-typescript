@@ -1,42 +1,31 @@
-const WebSocket = require("ws")
-const express = require("express")
-const fs = require("fs")
-const path = require("path")
+import express, { Router } from "express"
+import fs from "fs"
+import path from "path"
 
-const PORT = 8080
-const UPLOAD_DIR = path.resolve(__dirname, "uploads")
-if (!fs.existsSync(UPLOAD_DIR)) {
-  fs.mkdirSync(UPLOAD_DIR)
+const STATIC_DIR = path.resolve(__dirname, import.meta.env.VITE_STATIC_DIR || "/public")
+const userRouter = Router()
+if (!fs.existsSync(STATIC_DIR)) {
+  fs.mkdirSync(STATIC_DIR)
 }
 
-// Create Express server to serve uploaded assets
-const app = express()
-app.use("/users", express.static(UPLOAD_DIR))
-app.listen(3000, () => console.log("Asset server running on http://localhost:3000/users"))
+// Serve uploaded assets
+userRouter.use("/uploads", express.static(STATIC_DIR))
 
-// Create WebSocket server
-const wss = new WebSocket.Server({ port: PORT }, () => {
-  console.log(`WebSocket server running on ws://localhost:${PORT}`)
-})
-
-// Handle WebSocket connections
-wss.on("connection", (ws) => {
+userRouter.ws("/ws", (ws, req) => {
   console.log("Client connected")
 
   // Handle incoming messages
   ws.on("message", (data) => {
     try {
-      const parsed = JSON.parse(data)
+      const parsed = JSON.parse(data.toString())
       console.log(`Received message: ${JSON.stringify(parsed)}`)
       if (parsed.type === "state") {
-        // Save state to a file
         const stateFilePath = path.resolve(__dirname, "state.json")
         fs.writeFileSync(stateFilePath, JSON.stringify(parsed.payload, null, 2))
         ws.send(JSON.stringify({ type: "state", status: "saved" }))
       } else if (parsed.type === "asset") {
-        // Save asset to the uploads directory
         const buffer = Buffer.from(parsed.payload.data, "base64")
-        const filePath = path.join(UPLOAD_DIR, parsed.payload.filename)
+        const filePath = path.join(STATIC_DIR, parsed.payload.filename)
         fs.writeFileSync(filePath, buffer)
         ws.send(
           JSON.stringify({
@@ -52,5 +41,9 @@ wss.on("connection", (ws) => {
     }
   })
 
-  ws.on("close", () => console.log("Client disconnected"))
+  ws.on("close", () => {
+    console.log("Client disconnected")
+  })
 })
+
+export default userRouter
