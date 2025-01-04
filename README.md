@@ -1,20 +1,44 @@
 # \<Titan-Engine/>
 
-<JS Fueled Engines Run Cleaner/>
-
 JS Fuels My Engine
 
-#### \<What {...is} my="Focus"/>:
+## \<What {...is} my="Focus" />
 
-My goal was to create a game engine that is
-just as much about having complete control over
-the application and making it "YOUR OWN" experience
-as it is about being able to make games.
+The vision behind this project is to create a game engine that puts unparalleled control into the hands of developers, enabling them to shape their applications into something uniquely their own. It’s not just about building games—it’s about crafting an ecosystem that adapts to your specific needs, preferences, and creative vision.
 
-Not sure about anyone else but I enjoy diving into customizing
-the tools I use as I do using the tools themselves. Thats what I'm
-focusing on with this project.
+This engine is designed to be a playground for innovation, where developers have the flexibility to modify, expand, and fully customize the tools they rely on. For me, the process of personalizing my tools is just as exciting and rewarding as using them. Whether it's tailoring the UI, adjusting workflows, or adding entirely new capabilities, I want TITAN to be as much about the journey of creation as the end result itself.
 
-#### \<Where am="I">
+### \<Where am="I" />
 
-So far I have created a bunch of hook based interactions. and implemented.
+So far, I have created several hook-based interactions and implemented them.
+
+### \<TechStack />
+
+#### import { TypeScript, React, TailwindCSS, Vite, MonacoEditor, APEECS, HeadlessUI, ReactControlPanel, FontAwesome, ReactIcons, Classnames, ReactResizablePanels } from 'titan-tech-stack';
+
+##### \<Progress status="Current" />
+
+- [x] Initialized project with TypeScript, React, and TailwindCSS
+- [x] Set up Vite for development and build processes
+- [x] Integrated Monaco Editor for code editing
+- [x] Implemented hook-based interactions
+
+##### \<Progress status="In Progress" />
+
+- [ ] Developing customizable workspace layouts
+- [ ] Enhancing state management across components
+- [ ] Integrating APE ECS for game logic
+
+##### \<Progress status="To Do" />
+
+- [ ] Implement advanced rendering capabilities
+- [ ] Develop comprehensive documentation
+- [ ] Create interactive tutorials for users
+
+##### \<Contributing />
+
+Contributions are welcome! Feel free to fork the repository and submit pull requests.
+
+##### \<License type="MIT"/>
+
+This project is licensed under the MIT License.
