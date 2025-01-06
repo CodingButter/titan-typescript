@@ -1,0 +1,38 @@
+{
+  "name": "@titan-engine/adapters",
+  "version": "1.0.2",
+  "exports": {
+    "./client": {
+      "browser": "./dist/client/main.js",
+      "default": "./dist/client/main.js"
+    },
+    "./server": {
+      "node": "./dist/server/main.js",
+      "default": "./dist/server/main.js"
+    }
+  },
+  "main": "./dist/server/main.js",
+  "module": "./dist/client/main.js",
+  "types": "./dist/client/main.d.ts",
+  "scripts": {
+    "build:client": "tsc --project tsconfig.client.json",
+    "build:server": "tsc --project tsconfig.server.json",
+    "build": "npm run build:client && npm run build:server"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "dts-gen": "^0.10.4",
+    "eslint": "^9.17.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "globals": "^15.14.0",
+    "typescript": "~5.6.2",
+    "typescript-eslint": "^8.19.0"
+  },
+  "dependencies": {
+    "assert-js": "^1.0.0",
+    "react": "^19.0.0"
+  },
+  "peerDependencies": {
+    "react": "*"
+  }
+}

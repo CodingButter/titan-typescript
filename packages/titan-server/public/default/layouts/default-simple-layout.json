@@ -1,0 +1,53 @@
+{
+  "title": "Root Panel Group",
+  "id": "root-panel-group",
+  "direction": "horizontal",
+  "autoSaveId": "workspace-layout",
+  "children": [
+    {
+      "id": "toolbar",
+      "title": "Toolbar",
+      "view": "ToolBar",
+      "resizable": false,
+      "style": { "maxWidth": "60px" }
+    },
+    {
+      "id": "hierarchy",
+      "title": "Hierarchy",
+      "view": "Hierarchy",
+      "resizable": true
+    },
+    {
+      "id": "viewport-assets-browser",
+      "title": "Viewport & Assets Browser",
+      "direction": "vertical",
+      "resizable": true,
+      "children": [
+        {
+          "id": "viewport",
+          "title": "Viewport",
+          "view": "Viewport",
+          "resizable": true
+        },
+        {
+          "id": "asset-browser",
+          "title": "Asset Browser",
+          "view": "AssetBrowser",
+          "resizable": true
+        },
+        {
+          "id": "editor",
+          "title": "Editor",
+          "view": "Editor",
+          "resizable": true
+        }
+      ]
+    },
+    {
+      "id": "inspector",
+      "title": "Inspector",
+      "view": "Inspector",
+      "resizable": true
+    }
+  ]
+}

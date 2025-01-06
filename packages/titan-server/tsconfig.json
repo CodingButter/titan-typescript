@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./", // Root directory for imports
+    "paths": {
+      "@components/*": ["src/components/*"], // Example alias
+      "@utils/*": ["src/utils/*"] // Another alias
+    },
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "declaration": true,
+    "sourceMap": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

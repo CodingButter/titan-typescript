@@ -1,0 +1,1 @@
+{"root":["./src/server.ts","./src/routers/chatrouter.ts","./src/routers/userrouter.ts","./src/routers/libs/filestorage.ts"],"version":"5.7.2"}
