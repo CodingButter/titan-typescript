@@ -1,11 +1,3 @@
-export type Email = `${string}@${string}.${string}`
-
-export interface Authentication {
-  email?: Email
-  password?: string
-  token?: string
-}
-
 export interface AdapterOptions {
   storage_quota?: number
 }

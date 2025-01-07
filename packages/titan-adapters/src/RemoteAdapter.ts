@@ -1,9 +1,10 @@
-import { AdapterOptions, Authentication, Query } from "./Adapters"
+import { Auth } from "@titan-engine/schema"
+import { AdapterOptions, Query } from "./Adapters"
 import BaseAdapter from "./BaseAdapter"
 
 export interface RemoteAdapterOptions extends AdapterOptions {
   baseURL?: string | URL
-  authentication?: Authentication
+  auth?: Auth
 }
 
 export interface GetAPIData {

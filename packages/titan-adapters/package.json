@@ -30,7 +30,8 @@
   },
   "dependencies": {
     "assert-js": "^1.0.0",
-    "react": "^19.0.0"
+    "react": "^19.0.0",
+    "uuid": "^11.0.4"
   },
   "peerDependencies": {
     "react": "*"
